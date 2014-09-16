@@ -1,0 +1,162 @@
+﻿<html>
+  <head>
+    <title>連絡我們</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+    <meta HTTP-EQUIV=Content-Type content="text/html;charset=utf-8">
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=zh-TW"></script> 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <style type="text/css">
+		html { height: 100% }
+		body { height: 100%; margin: 0px; padding: 0px }	   
+		#map_canvas { height: 100% }
+		#msg{
+		font-size:2em;
+		color:SaddleBrown;	                    				 
+			 }		
+	</style>
+	<script language="Javascript">	
+	var start;
+/************************
+   google map 初始化
+************************/
+function initialize() 
+	{
+        //規畫路徑呈現選項
+		var rendererOptions = 
+		{
+			suppressMarkers: true
+        };
+ 
+        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+        var startPoint = new google.maps.LatLng(25.05848, 121.554879);	
+        var myOptions = {
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: startPoint
+        }
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        directionsDisplay.setMap(map);
+		marked(startPoint,'資策會-智通所');	 
+		
+	   
+	  
+	}
+/************************
+      Marker
+************************/
+
+function marked(addr,markstr)
+	{
+		
+		var marker = new google.maps.Marker({
+                position: addr, //經緯度
+                title: markstr, //顯示文字
+                icon: createMarkerIcon(markstr, {
+                    bgColor:"orangered"
+                }),
+                map: map //指定要放置的地圖對象
+            });
+	}
+/************************
+新增在地圖上指定座標描點
+************************/
+function createMarker(lat, Lng,contentString) 
+	{
+		var MapLatLng=new google.maps.LatLng(lat,Lng);
+		var marker = new google.maps.Marker
+		({
+			position: MapLatLng, 
+			map: map,
+			clickable : true						
+		});
+		markersArray.push(marker);
+		google.maps.event.addListener(marker, 'click', function() 
+		{
+			infowindow.setContent(contentString); 
+			infowindow.open(map,marker);
+		});
+		//勾選後立即顯示其訊息
+		google.maps.event.trigger(marker,"click");
+	}
+				
+/************************
+刪除在地圖上指定座標描點
+************************/
+function DeleteMarker(CheckVal)
+	{
+		for(var i=0;i<markersArray.length;i++)
+			{
+			//將所取消選取的座標與存在於地圖內陣列座標做分析
+				if($.trim(markersArray[i]["position"])==$.trim(CheckVal))
+					{
+						markersArray[i].setMap(null);
+						markersArray[i].length=0;
+					}
+			}
+	}
+
+/************************
+createMarkerIcon
+************************/
+function createMarkerIcon(text, opt)
+	{
+		//定義預設參數
+		var defaultOptions = 
+		{
+			fontStyle: "normal", //normal, bold, italic
+			fontName: "Arial",
+			fontSize: 12, //以Pixel為單位
+			bgColor: "darkblue",
+			fgColor: "white",
+			padding: 4,
+			arrowHeight: 6 //下方尖角高度
+		};
+		options = $.extend(defaultOptions, opt);
+		//建立Canvas
+		var canvas = document.createElement("canvas"),
+		context = canvas.getContext("2d");
+		//評估文字尺寸
+		var font = options.fontStyle + " " + options.fontSize + "px " + 
+					options.fontName;
+		context.font = font;
+		var metrics = context.measureText(text);
+		//文字大小加上padding作為外部尺寸
+		var w = metrics.width + options.padding * 2;
+		//高度以Font的大小為準
+		var h = options.fontSize + options.padding * 2 +
+				options.arrowHeight;
+		canvas.width = w;
+		canvas.height = h;
+		//邊框及背景
+		context.beginPath();
+		context.rect(0, 0, w, h - options.arrowHeight);
+		context.fillStyle = options.bgColor;
+		context.fill();
+		//畫出下方尖角
+		context.beginPath();
+		var x = w / 2, y = h, arwSz = options.arrowHeight;
+		context.moveTo(x, y);
+		context.lineTo(x - arwSz, y - arwSz);
+		context.lineTo(x + arwSz, y - arwSz);
+		context.lineTo(x, y);
+		context.fill();
+		//印出文字
+		context.textAlign = "center";
+		context.fillStyle = options.fgColor;
+		context.font = font;
+		context.fillText(text,	w / 2,(h - options.arrowHeight) / 2 + options.padding);
+		//傳回DataURI字串
+		return canvas.toDataURL();
+	}
+	</script>
+  </head>
+  
+	<body onload="initialize();">	
+   <div id ='msg'><font face="標楷體">
+   資策會-智慧網通系統研究所<br>
+   地理位置<br>
+   台北市松山區民生東路四段133號7樓<br></font></div>
+		<div id="map_canvas" style="width:60%; height:70%"></div>
+	</body>
+	
+</html>

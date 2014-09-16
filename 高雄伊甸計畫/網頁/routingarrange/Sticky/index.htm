@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://www.fusiondevs.com/lab/sticky2/index.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Sticky</title>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="switcher.css">
+
+<link rel="stylesheet" type="text/css" id="stickyclass" href="stickymenu.blue.menubar.css">
+<link rel="stylesheet" type="text/css" id="stickymenuclass" href="stickymenu.silver.inner_menu.css">
+
+<!-- jQuery plugins -->
+<script type="text/javascript" async="" src="ga.js"></script><script language="javascript" type="text/javascript" src="jquery-1.5.1.min.js"></script>
+
+<script type="text/javascript" language="javascript" src="jquery.stickymenu.min.js"></script> 
+
+<script type="text/javascript" language="javascript" src="jquery.styleswitch.enc.js"></script>
+
+
+
+<script language="javascript" type="text/javascript">
+	$(document).ready(function() {
+		$('#cssswitcher').StyleSwitch();
+
+		$('#smenubar').stickyMenubar({
+			floatingDiv: $('#optionbar'),
+			floatingDivBackground: true,
+			onLeaveTop: function() {
+				$('.top_menu').fadeIn();
+				$('#header').addClass('margin_bottom'); 
+			},
+			onScroll: function() {
+				$('.top_menu').fadeOut(); 
+				$('#header').removeClass('margin_bottom'); 
+			}
+		});
+		
+		
+
+	});
+</script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2398971-4']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+</head>
+<body>
+<!-- HERE STARTS HEADER -->
+<!-- HERE ENDS HEADERS -->
+
+<div id="optionbar" style="width: 100%;" class="smenubar_background float_top">
+	<div class="wrapper">
+		<!-- HERE STARTS THE MENU -->
+        <ul id="smenubar" class="smenubar" style="border-bottom-style: none;"> 
+        	<li><a  class="arrow_down">Home</a>            	
+            </li>
+            <li><a class="arrow_down">Regular menu</a>      
+            </li> 
+            <!-- option 4 -->
+            <li><a class="arrow_down">Mega menu</a>           
+            </li> 
+            
+            <li><a  class="arrow_down">Mega Menu #2</a>     
+            </li>
+            
+            <!-- option 5 -->
+            <li><a class="arrow_down">Follow me</a>            	
+            </li>      
+        </ul> 
+		<!-- HERE ENDS THE MENU -->
+    </div>
+</div>
+
+<div id="container">
+	<div class="wrapper">
+    
+        <p>Tired of 'sticky header' plugins that make that annoying 150 height header stay always on top when what you want is only for the menubar to stay on top?<br>
+        <br>
+        Here is when <strong>Sticky MenuBar</strong> comes into play. Just select what DOM object is your &lt;ul&gt; based menubar in, and the script will make it sticky on top of your screen whenever your visitors scroll your page. Once you scroll back up, it will stop at the right position.</p>
+        <p>The plugin also works as a Multi Level dropdown Mega Menu, and comes in 6 different CSS color templates for you to use.</p>
+        
+        <h3>Installation</h3>
+        <p>Sticky MenuBar plugin consists of basically 5 files:</p>
+        <div class="code">
+            <ul>
+                <li>js/jquery-1.5.1.min.js</li>
+                <li>js/jquery.hoverIntent.js</li>
+                <li>stickybar/jquery.stickymenu.js</li>
+                <li>stickybar/stickymenu.~color~.css</li>
+                <li>stickybar/arrow-right.png</li>
+                <li>stickybar/arrow-down.png</li>
+            </ul>
+      </div>
+        <p>There are 6 available colors to choose from. <strong>Blue, green, red, yellow, pink and dark</strong>. Of course you can make your own CSS templates, which is probably the best, for I'm not very good with CSS.</p>
+        
+        <p>Once you have found these 5 files (the 2 .js files, one of the color .css files and the two images), the first thing you have to do is copy them within your web documents, inside a folder called <strong>sticky</strong>. Then include the js and css files between &lt;head&gt; and &lt;/head&gt; tags inside your html document. This is how it should look like:</p>
+        
+      <div class="code">
+        &lt;link rel="stylesheet" type="text/css" href="stickybar/stickymenu.blue.css" /&gt;    <br>
+        &lt;script  type="text/javascript" language="javascript" src="js/jquery-1.5.1.min.js"&gt;&lt;/script&gt;<br>
+        &lt;script type="text/javascript" language="javascript" src="js/jquery.hoverIntent.js"&gt;&lt;/script&gt; <br>
+        &lt;script type="text/javascript" language="javascript" src="stickybar/jquery.stickymenu.js"&gt;&lt;/script&gt;        </div>
+      
+        <p>Next thing to do is to decide where is your menubar (in case you are using your very own menubar). Usually menubars are simple &lt;ul&gt; in the header, but sometimes these menubars are included in their own &lt;div&gt;. To make it a little more visual, I will write some examples.</p>
+        
+        <h3>Installing 'sticky' on a UL</h3>
+        <p>In the case your menubar is a UL object within your header DIV, you can make this Unordered List float independent from your haeder. To do this, you have to call <strong>stickyMenubar</strong> on the UL class or id.</p>
+        <div class="code">
+            &lt;script language="javascript" type="text/javascript"&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;$(document).ready(function() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('.menu_ul').stickyMenubar();<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+            &lt;/script&gt;
+        </div>
+        <div class="code">
+        &lt;div class="header"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;... header stuff here ...<br>
+        &lt;/div&gt;<br>
+        &lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="menu_ul"&gt; ... menubar stuff here ...&lt;/ul&gt;<br>
+        &lt;/div&gt;
+        </div>
+        
+        
+        <h3>Installing 'sticky' on a DIV</h3>
+        <p>In the case your header and menubar are 2 separate DIV objects, you can make your menubar float independently from the header by just giving <strong>stickyMenubar</strong> the target floatingDiv parameter.</p>
+        <div class="code">
+            &lt;script language="javascript" type="text/javascript"&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;$(document).ready(function() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('.menu_ul').stickyMenubar({<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;floatingDiv: $('#optionbar')<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+            &lt;/script&gt;
+        </div>
+        <div class="code">
+        &lt;div class="header"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;... header stuff here ...<br>
+        &lt;/div&gt;<br>
+        &lt;div class="optionbar"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="menu_ul"&gt; ... menubar stuff here ...&lt;/ul&gt;<br>
+        &lt;/div&gt;
+        </div>
+       
+      
+      <h3>Customization</h3>
+      <table id="tabla_options" cellspacing="0">
+        <tbody><tr class="odd">
+            <td class="option">floatingDiv</td>
+            <td class="desc">the DOM element to be used as the floating panel.</td>
+        </tr>
+        <tr class="even">
+            <td class="option">floatingDivBackground</td>
+            <td class="desc">(true or false) sets if the background used on the actual menu, is going to be used on the floating element too.</td>
+        </tr>
+        
+        <tr class="odd">
+            <td class="option">onScroll</td>
+            <td class="desc">(callback) function executed when the header is visible and the options menu sticks to it's original position.</td>
+        </tr>
+        <tr class="even">
+            <td class="option">onLeaveTop</td>
+            <td class="desc">(callback) function executed when the header dissapears from the screen, and the menu becomes sticky to the top of the screen.</td>
+        </tr>
+        
+         <tr class="odd">
+            <td class="option">megaMenu</td>
+            <td class="desc">(true or false) sets if the &lt;ul&gt; stickyMenubar is being called on acts as a mega menu or not.</td>
+        </tr>
+        <tr class="even">
+            <td class="option">sensitivity</td>
+            <td class="desc">hoverIntent sensitivity. Sets how sensible the menu options are to the mouse movement.</td>
+        </tr>
+        <tr class="odd">
+            <td class="option">padding</td>
+            <td class="desc">this number should match the right and left padding added the 'li' elements on the css, so the javascript calculations of the menu match the css style. Default CSS and JS paddings are 5px.</td>
+        </tr>
+        <tr class="even">
+            <td class="option">container_width</td>
+            <td class="desc">default 960. It gives the script the exact width of the container in wich the menu is being run. This is so the 'mega menu' option can stretch to all the page width.</td>
+        </tr>
+    </tbody></table>
+       
+      
+    </div>
+</div>
+
+<div id="footer">
+	<div class="wrapper">
+    	Sticky MenuBar by <a href="http://www.fusiondevs.com/">Fusiondevs.com</a>
+    </div>
+</div>
+
+
+
+</body></html>

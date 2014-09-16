@@ -1,0 +1,45 @@
+#cssswitcher {
+	font-family:Arial, Helvetica, sans-serif;
+	position:fixed;
+	left:5px;
+	overflow:hidden;
+	background: #EFF9FA;
+	padding:5px;
+	border:solid #A6ADE1 1px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0px 0px 5px #ccc;
+	-webkit-box-shadow: 0px 0px 5px #ccc;
+	box-shadow: 0px 0px 5px #ccc;
+	max-width:155px;
+}
+#cssswitcher a {
+	background:url(img/shine.png) center no-repeat;
+	display:block;
+	height:25px;
+	width:25px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	-moz-box-shadow: 0px 0px 5px #888;
+	-webkit-box-shadow: 0px 0px 5px #888;
+	box-shadow: 0px 0px 5px #888;
+	margin:3px;
+	float:left;
+}
+#cssswitcher h1 {
+	font-size:16px;
+	clear:both;
+	margin:3px;
+}
+#cssswitcher h3 {
+	font-size:12px;
+	clear:both;
+	margin:3px;
+}
+#cssswitcher .clear {
+	width:100%;
+	clear:both;
+	height:10px;
+}

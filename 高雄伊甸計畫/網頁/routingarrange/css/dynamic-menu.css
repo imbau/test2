@@ -1,0 +1,32 @@
+#tipfloat {
+	width:359px;
+	font-size:14px;
+	position: fixed;
+	right:100px;
+	bottom:0px; 
+	color: #3C3C3C;
+	
+	z-index:9999;
+	
+}
+#tipfloat .tiphead{
+	padding:0 5px;
+    height:46px;
+	background-image:url(../image/fliterheader.png);
+	line-height:46px;
+	display:block;
+	margin:7px 0 0 0;
+	overflow:hidden;
+	
+}
+
+
+#tipfloat .tiphead .close{display:block;margin:12px 0 0 0;height:22px; text-align:center; width:359px;}
+
+/* ranklist */
+.dymnamic-menu{
+	border:solid 1px #ddd;
+    padding:10px 10px 0 10px;
+	background-image: url(../image/body.png) ;
+    
+}
